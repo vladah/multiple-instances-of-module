@@ -33,7 +33,7 @@ provider "random" {
 }
 
 resource "random_pet" "s3_name" {
-  length = 3
+  length = 4
 }
 
 module "bucket_for_each" {
