@@ -4,7 +4,7 @@ variable "server_name" {
 
 variable "server_type" {
   type    = string
-  default = "t2.micro"
+  default = "t2.large"
 }
 
 # variable "server_ami" {
