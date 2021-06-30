@@ -1,8 +1,11 @@
 terraform {
+  required_version = "~> 1.0.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = ">= 3.0"
+      # configuration_aliases = [ aws.use2 ]
     }
     random = {
       source  = "hashicorp/random"
@@ -46,19 +49,21 @@ module "bucket_count_use2" {
   count  = 2
   source = "./publish_bucket"
   name   = "${count.index}-${random_pet.s3_name.id}"
-  providers = {
-    aws = aws.use2
-  }
+  # providers = {
+  #   aws = aws.use2
+  # }
 }
 
 module "server_for_each_use2" {
   source   = "./publish_instance"
   for_each = toset(["assets", "media"])
 
+
+
   server_name = each.key
-  #   providers = {
-  #     aws = aws.use2
-  #   }
+  providers = {
+    aws = aws.use2
+  }
 }
 
 locals {
@@ -93,7 +98,7 @@ output "server_ids_count" {
 }
 
 output "server_names_for_each" {
-  value = {for key, value in module.server_for_each_use2 : key => value.ser_name}
+  value = { for key, value in module.server_for_each_use2 : key => value.ser_name }
 }
 
 output "server_ids_for_each" {
