@@ -90,10 +90,6 @@ resource "null_resource" "quiz-experts" {
   provisioner "local-exec" {
     command = "date"
   }
-
-  provisioner "local-exec" {
-    command = "echo The server's IP address is ${self.private_ip}"
-  }
 }
 
 output "server_names_count" {
