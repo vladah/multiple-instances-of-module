@@ -85,9 +85,9 @@ resource "null_resource" "quiz-experts" {
 }
 
 output "server_names_for_each" {
-  value = [for key, value in module.server_for_each_use2 : value.ser_name]
+  value = {for key, value in module.server_for_each_use2 : key => value.ser_name}
 }
 
 output "server_names_count" {
-  value = [for obj in module.server_count : obj.ser_name]
+  value = [for obj in module.server_count : "${upper(obj.ser_name)}_${uuid()}"]
 }
