@@ -39,3 +39,7 @@ resource "aws_instance" "server" {
 output "ser_name" {
   value = aws_instance.server.tags.Name
 }
+
+output "ser_id" {
+  value = aws_instance.server.id
+}

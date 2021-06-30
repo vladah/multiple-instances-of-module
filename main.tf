@@ -91,3 +91,7 @@ output "server_names_for_each" {
 output "server_names_count" {
   value = [for obj in module.server_count : "${upper(obj.ser_name)}_${uuid()}"]
 }
+
+output "server_ids_count" {
+  value = module.server_count[*].ser_id
+}
