@@ -88,6 +88,7 @@ resource "null_resource" "quiz-experts" {
     command = "echo \"Hello, $(whoami)\""
   }
   provisioner "local-exec" {
+    when    = destroy
     command = "date"
   }
 }
